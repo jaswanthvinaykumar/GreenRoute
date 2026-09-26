@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenRoute — Sustainable Server Log Optimizer</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">GreenRoute <span class="badge-tag">HACKATHON v1.0</span></div>
+        <div class="brand-tagline">Sustainable Server Log Optimizer & Carbon Abatement Engine</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button id="btn-load-sample" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Load Production Sample (5,000 lines)
+      </button>
+      <button id="btn-open-cert" class="btn btn-emerald" disabled>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        ESG Audit Certificate
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-layout">
+    
+    <!-- Left Column: Input, Drag & Drop, Settings -->
+    <section class="left-col">
+      
+      <!-- Drag & Drop Card -->
+      <div class="card drop-zone-card" id="drop-zone">
+        <div class="drop-zone-content">
+          <div class="drop-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+              <path d="M12 12v9"/>
+              <path d="m16 16-4-4-4 4"/>
+            </svg>
+          </div>
+          <h3>Drop server logs here or browse</h3>
+          <p class="text-muted">Supports Nginx, Apache, AWS CloudFront, Docker, JSON & Syslog (.log, .txt, .gz)</p>
+          <input type="file" id="file-input" class="hidden-input" accept=".log,.txt,.csv,.json,.gz">
+          <div class="drop-actions">
+            <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Browse Local Log</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Tuning & Carbon Parameters -->
+      <div class="card settings-card">
+        <div class="card-header">
+          <h4>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Optimization & Carbon Engine Parameters
+          </h4>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="select-region">Datacenter Grid Region</label>
+            <select id="select-region" class="form-control">
+              <option value="us-east-1" selected>US East (N. Virginia) • 379 gCO2e/kWh</option>
+              <option value="us-west-2">US West (Oregon Hydro) • 85 gCO2e/kWh</option>
+              <option value="eu-central-1">Europe (Frankfurt) • 338 gCO2e/kWh</option>
+              <option value="eu-north-1">Europe (Sweden Clean) • 25 gCO2e/kWh</option>
+              <option value="ap-south-1">Asia Pacific (Mumbai) • 660 gCO2e/kWh</option>
+              <option value="global-avg">Global Datacenter Average • 436 gCO2e/kWh</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="select-storage">Storage Hardware Medium</label>
+            <select id="select-storage" class="form-control">
+              <option value="ssd" selected>Enterprise NVMe / SATA SSD (1.25 W/TB)</option>
+              <option value="hdd">Enterprise 7.2k HDD (6.50 W/TB)</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="input-replication">Replication Factor: <span id="val-replication" class="highlight-val">3x</span></label>
+              <input type="range" id="input-replication" min="1" max="5" value="3" class="range-slider">
+              <span class="range-hint">Cloud multi-AZ redundancy</span>
+            </div>
+            <div class="form-group half">
+              <label for="input-retention">Retention: <span id="val-retention" class="highlight-val">365 Days</span></label>
+              <input type="range" id="input-retention" min="30" max="730" step="30" value="365" class="range-slider">
+              <span class="range-hint">Compliance storage lifespan</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-fleet">Fleet Daily Telemetry Scale: <span id="val-fleet" class="highlight-val">50 GB / Day</span></label>
+            <input type="range" id="input-fleet" min="5" max="500" step="15" value="50" class="range-slider">
+            <span class="range-hint">Simulate annual impact across entire cloud cluster</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="toggle-group-title">Telemetry Sanitization Pipeline</div>
+          
+          <div class="checkbox-list">
+            <label class="checkbox-item">
+              <input type="checkbox" id="chk-healthchecks" checked>
+              <span class="chk-custom"></span>
+              <div>
+                <span class="chk-title">Filter Healthchecks & Probes</span>
+                <span class="chk-desc">Drops repetitive /healthz, /readyz, uptime pings (30-60% of noise)</span>
+              </div>
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" id="chk-dedup" checked>
+              <span class="chk-custom"></span>
+              <div>
+                <span class="chk-title">Deduplicate Error Cascades</span>
+                <span class="chk-desc">Collapses repeated stacktraces into single summarized bursts</span>
+              </div>
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" id="chk-pii" checked>
+              <span class="chk-custom"></span>
+              <div>
+                <span class="chk-title">Mask Sensitive PII & Auth Tokens</span>
+                <span class="chk-desc">GDPR/HIPAA compliance: Anonymizes IPs, emails, JWT tokens</span>
+              </div>
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" id="chk-ua" checked>
+              <span class="chk-custom"></span>
+              <div>
+                <span class="chk-title">Normalize User-Agent Bloat</span>
+                <span class="chk-desc">Compacts 250-character browser strings to concise tokens</span>
+              </div>
+            </label>
+          </div>
+
+          <button id="btn-reoptimize" class="btn btn-primary btn-block" style="margin-top: 16px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            Run GreenRoute Optimizer
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Live Results Dashboard -->
+    <section class="right-col">
+      
+      <!-- Welcome Empty State -->
+      <div id="empty-state" class="card empty-state-card">
+        <div class="empty-icon">🌱</div>
+        <h2>Ready to optimize your server logs</h2>
+        <p>Tech companies store petabytes of server logs, wasting datacenter power and generating metric tons of avoidable CO₂ emissions.</p>
+        <p>Drop a log file on the left or click below to run the live production simulation.</p>
+        <button id="btn-empty-sample" class="btn btn-emerald btn-lg" style="margin-top: 20px;">
+          🚀 Test with 5,000 Production Server Logs
+        </button>
+      </div>
+
+      <!-- Results Container (Hidden until optimized) -->
+      <div id="results-view" class="results-container hidden">
+
+        <!-- Top Key KPI Metrics -->
+        <div class="kpi-grid">
+          
+          <div class="kpi-card accent-emerald">
+            <div class="kpi-header">
+              <span class="kpi-label">Storage Saved</span>
+              <span class="kpi-badge" id="kpi-badge-reduction">-92%</span>
+            </div>
+            <div class="kpi-value" id="kpi-space-saved">0 MB</div>
+            <div class="kpi-subtext" id="kpi-storage-details">Baseline: 0 MB ➔ Optimized: 0 KB</div>
+          </div>
+
+          <div class="kpi-card accent-lime">
+            <div class="kpi-header">
+              <span class="kpi-label">CO₂e Abatement</span>
+              <span class="kpi-badge-icon">🌍</span>
+            </div>
+            <div class="kpi-value" id="kpi-co2-saved">0.00 kg</div>
+            <div class="kpi-subtext">Direct Scope 2 & 3 Emissions avoided</div>
+          </div>
+
+          <div class="kpi-card accent-cyan">
+            <div class="kpi-header">
+              <span class="kpi-label">Energy Conserved</span>
+              <span class="kpi-badge-icon">⚡</span>
+            </div>
+            <div class="kpi-value" id="kpi-energy-saved">0.00 kWh</div>
+            <div class="kpi-subtext">Storage rack & PUE power eliminated</div>
+          </div>
+
+          <div class="kpi-card accent-gold">
+            <div class="kpi-header">
+              <span class="kpi-label">Annual Cloud Cost</span>
+              <span class="kpi-badge-icon">💵</span>
+            </div>
+            <div class="kpi-value" id="kpi-cost-saved">$0.00</div>
+            <div class="kpi-subtext">Estimated AWS S3 / GCP Storage savings</div>
+          </div>
+
+        </div>
+
+        <!-- Enterprise Annual Scaled Impact Banner -->
+        <div class="card enterprise-banner">
+          <div class="card-header space-between" style="margin-bottom: 12px;">
+            <h4>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+              Enterprise Fleet Scaled Annual Impact (<span id="banner-fleet-scale" style="color: var(--emerald);">50 GB/day</span>)
+            </h4>
+            <span class="badge-tag">ANNUAL FLEET PROJECTION</span>
+          </div>
+          <div class="enterprise-grid">
+            <div class="ent-col">
+              <span class="ent-val" id="ent-co2">0.0 Tons</span>
+              <span class="ent-lbl">Annual CO₂ Abated</span>
+            </div>
+            <div class="ent-col">
+              <span class="ent-val" id="ent-kwh">0 MWh</span>
+              <span class="ent-lbl">Datacenter Energy Conserved</span>
+            </div>
+            <div class="ent-col">
+              <span class="ent-val" id="ent-cost">$0</span>
+              <span class="ent-lbl">Annual Cloud Bill Slashed</span>
+            </div>
+            <div class="ent-col">
+              <span class="ent-val" id="ent-trees">0 Trees</span>
+              <span class="ent-lbl">Annual Tree Offset Equiv.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real World Eco Equivalencies -->
+        <div class="card equiv-banner">
+          <div class="equiv-title">🌿 Verified Real-World Environmental Equivalency:</div>
+          <div class="equiv-row">
+            <div class="equiv-pill">
+              <span class="equiv-icon">📱</span>
+              <div>
+                <strong id="eq-phones">0</strong>
+                <span>Smartphone Full Charges</span>
+              </div>
+            </div>
+            <div class="equiv-pill">
+              <span class="equiv-icon">🚗</span>
+              <div>
+                <strong id="eq-car">0 km</strong>
+                <span>Gasoline Car Travel Offset</span>
+              </div>
+            </div>
+            <div class="equiv-pill">
+              <span class="equiv-icon">🍾</span>
+              <div>
+                <strong id="eq-bottles">0</strong>
+                <span>Plastic Bottles Carbon Avoided</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compression Benchmarking Breakdown -->
+        <div class="card">
+          <div class="card-header space-between">
+            <h4>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Multi-Algorithm Compression Benchmark
+            </h4>
+            <div class="download-group">
+              <span class="text-muted" style="font-size: 13px; margin-right: 8px;">Export:</span>
+              <button class="btn btn-sm btn-outline" onclick="downloadArchive('xz')">GreenRoute (.xz)</button>
+              <button class="btn btn-sm btn-outline" onclick="downloadArchive('gzip')">Gzip (.gz)</button>
+              <button class="btn btn-sm btn-outline" onclick="downloadArchive('clean')">Clean Plaintext</button>
+            </div>
+          </div>
+
+          <!-- Codec Bar Chart Container -->
+          <div class="chart-container">
+            <div id="codec-bars" class="codec-bars"></div>
+          </div>
+
+          <!-- Benchmark Summary Table -->
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>Codec Pipeline</th>
+                <th>Output Size</th>
+                <th>Space Reduction</th>
+                <th>Compression Time</th>
+                <th>Throughput</th>
+                <th>Carbon Footprint Tier</th>
+              </tr>
+            </thead>
+            <tbody id="benchmark-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Noise & Log Analytics Grid -->
+        <div class="two-col-grid">
+          
+          <!-- HTTP Status Codes & Noise Filter Breakdown -->
+          <div class="card">
+            <div class="card-header">
+              <h4>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Traffic Breakdown & Status Codes
+              </h4>
+            </div>
+            
+            <div class="status-summary-pills" id="status-pills">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="noise-breakdown-list">
+              <div class="noise-item">
+                <span class="noise-label">Noisy Healthchecks Filtered:</span>
+                <span class="noise-value" id="noise-healthchecks">0</span>
+              </div>
+              <div class="noise-item">
+                <span class="noise-label">Repeated Error Cascades Collapsed:</span>
+                <span class="noise-value" id="noise-errors">0</span>
+              </div>
+              <div class="noise-item">
+                <span class="noise-label">PII & Bearer Tokens Masked:</span>
+                <span class="noise-value" id="noise-pii">0</span>
+              </div>
+              <div class="noise-item">
+                <span class="noise-label">User-Agents Compacted:</span>
+                <span class="noise-value" id="noise-ua">0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Endpoints / Resource Consumers -->
+          <div class="card">
+            <div class="card-header">
+              <h4>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Top Endpoints & Traffic Drivers
+              </h4>
+            </div>
+            <div class="endpoints-list" id="endpoints-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Side-by-Side Visual Log Inspector -->
+        <div class="card">
+          <div class="card-header space-between">
+            <h4>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              Live Telemetry Inspector: Raw vs Cleaned Stream
+            </h4>
+            <div class="tab-selectors">
+              <button class="tab-btn active" onclick="switchLogTab('diff')">Side-by-Side Diff</button>
+              <button class="tab-btn" onclick="switchLogTab('cleaned')">Cleaned Output</button>
+              <button class="tab-btn" onclick="switchLogTab('raw')">Raw Ingested</button>
+            </div>
+          </div>
+
+          <div class="log-diff-viewer" id="log-diff-container">
+            <div class="diff-pane" id="diff-raw-pane">
+              <div class="pane-header">Raw Server Logs (Noisy & Unsanitized)</div>
+              <pre id="raw-log-preview">Awaiting logs...</pre>
+            </div>
+            <div class="diff-pane" id="diff-clean-pane">
+              <div class="pane-header">GreenRoute Cleaned & Sanitized Stream</div>
+              <pre id="clean-log-preview">Awaiting logs...</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ESG Certificate Modal -->
+  <div id="cert-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🌱 Official ESG Sustainability Audit Certificate</h3>
+        <button class="close-btn" onclick="closeCertModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-form-row">
+          <div class="form-group half">
+            <label for="cert-org-name">Issuing Organization / Entity</label>
+            <input type="text" id="cert-org-name" class="form-control" value="Acme Cloud Infrastructure Inc.">
+          </div>
+          <div class="form-group half">
+            <label for="cert-sys-name">Service / Cluster Name</label>
+            <input type="text" id="cert-sys-name" class="form-control" value="Production Kubernetes Ingress Logs">
+          </div>
+        </div>
+        <div class="cert-iframe-container">
+          <iframe id="cert-iframe" src="about:blank"></iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeCertModal()">Close</button>
+        <button class="btn btn-emerald" onclick="printCertIframe()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Save Official Certificate (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="spinner-container">
+      <div class="eco-spinner"></div>
+      <h3 id="loading-title">Sanitizing & Optimizing Telemetry...</h3>
+      <p id="loading-subtitle" class="text-muted">Running multi-algorithm compression & calculating carbon abatement</p>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
